@@ -11,9 +11,41 @@ namespace People
 {
     public partial class Form1 : Form
     {
+        HR hr;
+
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            hr.Add(tbSurname.Text, tbName.Text, Int32.Parse(tbAge.Text));
+            tbSurname.Clear();
+            tbName.Clear();
+            tbAge.Clear();
+        }
+
+        private void btnSetSize_Click(object sender, EventArgs e)
+        {
+            hr = new HR(Int32.Parse(tbSize.Text));
+        }
+
+        private void btnSort_Click(object sender, EventArgs e)
+        {
+            hr.Sort();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog SFD = new SaveFileDialog();
+            SFD.FileName = "result";
+            SFD.Filter = "text (*.txt)|*.txt";
+
+            if (SFD.ShowDialog() == DialogResult.OK)
+            {
+                hr.writeToFile(SFD.FileName);
+            }
         }
     }
 }

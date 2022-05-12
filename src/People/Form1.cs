@@ -20,7 +20,16 @@ namespace People
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            hr.Add(tbSurname.Text, tbName.Text, Int32.Parse(tbAge.Text));
+            try
+            {
+                hr.Add(tbSurname.Text, tbName.Text, Int32.Parse(tbAge.Text));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка ввода! Подробности:" + ex.Message.ToString());
+                return;
+            }
+
             tbSurname.Clear();
             tbName.Clear();
             tbAge.Clear();
